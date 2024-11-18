@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"
+        integrity="sha512-dPXYcDub/aeb08c63jRq/k6GaKccl256JQy/AnOq7CAnEZ9FzSL9wSbcZkMp4R26vBsMLFYH4kQ67/bbV8XaCQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Project- 1 - Weather App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="card">
+        <h3 class="check">Weather App</h3>
+        <div class="search_box">
+           
+            <input type="text" placeholder="Enter Location Name" spellcheck="false">
+            <button class="search_icon">
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
+        <div class="error">
+            Invalid Credintial.
+        </div>
+
+        <div class="others">
+            <div class="condition_img">
+                <i class="bi bi-clouds"></i>
+            </div>
+
+            <div class="details">
+                <h1 class="temp">0°C</h1>
+                <h2 class="city">Search Location</h2>
+            </div>
+
+            <div class="other_details">
+                <div class="humidity">
+                    <div class="humidity_icon">
+                        <i class="bi bi-water"></i>
+                    </div>
+                    <div class="humidity_details">
+                        <h3 class="humid">00%</h3>
+                        <p>Humidity</p>
+                    </div>
+
+                </div>
+                <div class="wind">
+                    <div class="wind_icon">
+                        <i class="bi bi-wind"></i>
+                    </div>
+                    <div class="wind_details">
+                        <h3 class="wind_speed">0 Km/h</h3>
+                        <p>Wind Speed</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const apiKey = "3b6da48522015b97b5486ab57f520542";
+        const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+
+        async function checkWeather(city) {
+            const responce = await fetch(apiUrl + city + `&appid=${apiKey}`);
+            if (responce.status == 404) {
+                document.querySelector(".error").style.display = "block";
+                document.querySelector(".others").style.display = "none";
+                
+            } else {
+                const data = await responce.json();
+                // console.log(data);
+
+                document.querySelector(".city").innerHTML = data.name;
+                document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
+                document.querySelector(".humid").innerHTML = data.main.humidity + "%";
+                document.querySelector(".wind_speed").innerHTML = data.wind.speed + " Km/h";
+
+                if (data.weather[0].main == "Clouds") {
+                    condition_img.innerHTML = '<i class="bi bi-clouds"></i>';
+                } else
+                    if (data.weather[0].main == "Clear") {
+                        condition_img.innerHTML = '<i class="bi bi-brightness-high"></i>';
+                    } else
+                        if (data.weather[0].main == "Rain") {
+                            condition_img.innerHTML = '<i class="bi bi-cloud-drizzle"></i>';
+                        } else
+                            if (data.weather[0].main == "Drizzle") {
+                                condition_img.innerHTML = '<i class="bi bi-cloud-sun"></i>';
+                            } else
+                                if (data.weather[0].main == "Mist") {
+                                    condition_img.innerHTML = '<i class="bi bi-cloud-snow"></i>';
+                                };
+            }
+
+        }
+
+        const input_value = document.querySelector(".search_box input");
+        const search_icon = document.querySelector(".search_icon");
+        const condition_img = document.querySelector(".condition_img");
+
+
+
+
+        search_icon.addEventListener("click", () => {
+            if (input_value.value == "") {
+                alert("Please Enter a valid Location!");
+            }
+            else {
+                checkWeather(input_value.value);
+                document.querySelector(".others").style.display = "block";
+                document.querySelector(".error").style.display = "none";
+
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>

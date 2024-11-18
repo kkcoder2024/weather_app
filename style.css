@@ -1,0 +1,151 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    color: white;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    position: relative;
+    user-select: none;
+}
+
+.card {
+    width: 100%;
+    max-width: 400px;
+    background: linear-gradient(45deg, rgba(6, 250, 250, 0.26), rgba(40, 219, 117, 0.447), rgba(196, 196, 14, 0.808));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 1rem;
+    border-radius: 10px;
+    position: absolute;
+    top: 20%;
+}
+
+.check {
+    margin-bottom: 30px;
+    padding: 8px 20px;
+    /* border: px dotted  rgba(196, 196, 14, 0.808); */
+    background: linear-gradient(45deg, rgba(6, 250, 250, 0.26), rgba(40, 219, 117, 0.447), rgba(196, 196, 14, 0.808));
+    border-radius: 50px;
+    font-size: 20px;
+}
+
+.search_box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+}
+
+.search_box input {
+    width: 250px;
+    height: 40px;
+    font-size: 16px;
+    outline: none;
+    border-radius: 30px;
+    padding-inline: 20px;
+    border: none;
+    color: black;
+
+}
+
+.search_box input::placeholder {
+    font-size: 16px;
+}
+
+.error {
+    margin-top: 2rem;
+    letter-spacing: 1px;
+    display: none;
+}
+
+.search_icon {
+    height: 40px;
+    width: 40px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+
+}
+
+.bi-search {
+    color: black;
+    padding: 5px;
+    font-size: 20px;
+
+
+}
+
+.details {
+    margin: 2rem;
+    text-align: center;
+}
+
+.temp {
+    font-size: 40px;
+}
+
+.city {
+    letter-spacing: 3px;
+    font-size: 28px;
+    margin-top: 1rem;
+}
+
+.other_details {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-block: 2rem;
+}
+
+.humidity_details p,
+.wind_details p {
+    font-size: 18px !important;
+}
+
+.humidity,
+.wind {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 22px;
+
+}
+
+.wind_icon,
+.humidity_icon {
+    font-size: 50px;
+}
+
+.others {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.condition_img {
+    width: 100%;
+    text-align: center;
+    margin-top: 2rem;
+
+}
+
+.condition_img i {
+    font-size: 100px;
+}
